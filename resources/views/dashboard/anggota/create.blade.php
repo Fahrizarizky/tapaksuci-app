@@ -10,8 +10,8 @@
     <div class="col-md-9">
         @if(session('message'))
         <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-        {{ session('message') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {{ session('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
     </div>
@@ -42,11 +42,19 @@
                 </div>
                 <div class="form-group">
                     <label for="email" class="font-weight-bold">Email Aktif</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <input type="email" class="form-control" id="email" name="email">
                 </div>
                 <div class="form-group">
                     <label for="no_telp" class="font-weight-bold">No_telp Aktif/WA</label>
                     <input type="text" class="form-control" id="no_telp" name="no_telp" required>
+                </div>
+                <div class="form-group">
+                    <label for="nama_cabang" class="font-weight-bold">Nama Cabang Latihan</label>
+                    <select type="text" class="form-control" id="kategori" name="nama_cabang" required>
+                        @foreach($namacabang as $cabang)
+                        <option value="{{ $cabang->id }}">{{$cabang->nama_cabang}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="tingkatan" class="font-weight-bold">Tingkatan Saat Ini</label>

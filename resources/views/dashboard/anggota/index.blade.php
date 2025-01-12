@@ -3,20 +3,20 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-dark text-uppercase fw-bold">Anggota Pimda</h1>
-          <a href="/dashboard/anggota/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="bi bi-plus-circle"></i> Anggota</a>
+  <h1 class="h3 mb-0 text-dark text-uppercase fw-bold">Anggota Pimda</h1>
+  <a href="/dashboard/anggota/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="bi bi-plus-circle"></i> Anggota</a>
 </div>
 
- <div class="row justify-content-center">
+<div class="row justify-content-center">
   <div class="col-md-8">
     @if(session('message'))
     <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-    {{ session('message') }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      {{ session('message') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
   </div>
-    </div>
+</div>
 
 <div class="card shadow mb-4">
   <div class="card-body">
@@ -45,12 +45,12 @@
         <td>{{$anggota->no_telp}}</td>
         <td>{{$anggota->tingkatan}}</td>
         <td><a href="/dashboard/anggota/{{ $anggota->id }}" class="btn btn-info btn-sm shadow-sm"><i class="bi bi-eye"></i></a>
-        <form action="/dashboard/anggota/delete/{{ $anggota->id }}" method="post" class="d-inline">
-          @csrf
-          @method('delete')
-          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data')"><i class="bi bi-trash"></i></button>
-        </form>
-      </td>   
+          <form action="/dashboard/anggota/delete/{{ $anggota->id }}" method="post" class="d-inline">
+            @csrf
+            @method('delete')
+            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data')"><i class="bi bi-trash"></i></button>
+          </form>
+        </td>
       </tr>
       @endforeach
       @endcan
@@ -62,11 +62,11 @@
         <td>{{$siswa->no_telp}}</td>
         <td>{{$siswa->tingkatan}}</td>
         <td><a href="/dashboard/anggota/{{ $siswa->id }}" class="btn btn-info btn-sm shadow-sm"><i class="bi bi-eye"></i></a>
-         <form action="/dashboard/anggota/delete/{{ $siswa->id }}" method="post" class="d-inline">
-          @csrf
-          @method('delete')
-          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data')"><i class="bi bi-trash"></i></button>
-        </form>
+          <form action="/dashboard/anggota/delete/{{ $siswa->id }}" method="post" class="d-inline">
+            @csrf
+            @method('delete')
+            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data')"><i class="bi bi-trash"></i></button>
+          </form>
         </td>
       </tr>
       @endforeach

@@ -8,7 +8,13 @@ class Anggotapimda extends Model
 {
     protected $guarded = ['id'];
 
-    public function riwayatkaderisasi() {
+    public function riwayatkaderisasi()
+    {
         return $this->hasMany(Riwayatkaderisasi::class);
+    }
+
+    public function cabanglatihan()
+    {
+        return $this->belongsTo(Cabanglatihan::class);
     }
 }

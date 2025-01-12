@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminpimdaMiddleware
+class AdminactiveMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,9 @@ class AdminpimdaMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->role !== 'adminpimda') {
+        if (Auth::user()->status == false) {
             return redirect('/dashboard');
-        }
+        };
         return $next($request);
     }
 }

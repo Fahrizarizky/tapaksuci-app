@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +9,7 @@
     <meta name="author" content="">
     <title>Admin Page</title>
     <!-- Custom fonts for this template-->
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -17,13 +18,14 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.css')}}" rel="stylesheet">
 </head>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
-       @include('dashboard.partials.sidebar')
+        @include('dashboard.partials.sidebar')
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -33,25 +35,25 @@
             <div id="content">
 
                 <!-- Topbar -->
-                 @include('dashboard.partials.topbar')
+                @include('dashboard.partials.topbar')
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">  
-                  
-            <!-- di sini adalah heading -->
-            
+                <div class="container-fluid">
+
+                    <!-- di sini adalah heading -->
+
                     <!-- isi konten -->
-                     @yield('content')                
-            
-            </div>
+                    @yield('content')
+
+                </div>
                 <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
-           @include('dashboard.partials.footer')
+            @include('dashboard.partials.footer')
             <!-- End of Footer -->
 
         </div>
@@ -60,7 +62,7 @@
     </div>
     <!-- End of Page Wrapper -->
 
-        <!-- Bootstrap core JavaScript-->
+    <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -86,23 +88,18 @@
     <script src="{{asset('js/sb-admin-2.js')}}"></script>
 
     <script>
-// Menggunakan sedikit JavaScript untuk mengubah konten modal
-document.getElementById('openModal').addEventListener('click', function() {
-    var filePath = 'path/to/your/file.pdf'; // Ganti dengan path file yang akan ditampilkan
-    var fileExtension = filePath.split('.').pop().toLowerCase();
-    var fileContent = document.getElementById('fileContent');
+        //Jquery
+        // Ketika tombol "Lihat Ijazah" diklik
+        $('#imageModal').on('show.bs.modal', function(event) {
+            // Ambil URL gambar dari tombol yang diklik
+            var button = $(event.relatedTarget); // Tombol yang diklik
+            var gambarUrl = button.data('ijazah'); // Ambil data gambar yang disimpan dalam tombol
 
-    if (fileExtension === 'pdf') {
-        // Menampilkan PDF dalam iframe
-        fileContent.innerHTML = '<iframe src="' + filePath + '" width="100%" height="400px"></iframe>';
-    } else if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
-        // Menampilkan gambar
-        fileContent.innerHTML = '<img src="' + filePath + '" class="img-fluid" />';
-    } else {
-        fileContent.innerHTML = 'File ini tidak dapat ditampilkan.';
-    }
-});
-</script>
+            // Set gambar URL ke dalam elemen gambar di modal
+            var modalGambar = $(this).find('#modalGambar');
+            modalGambar.attr('src', gambarUrl);
+        });
+    </script>
 </body>
 
 </html>

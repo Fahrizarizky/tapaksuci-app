@@ -47,7 +47,11 @@
       <div class="card border-info shadow-sm">
         <div class="card-body text-center">
           <h6 class="text-uppercase text-info fw-bold">Anggota Tapak Suci</h6>
+          @if(auth()->user()->role !== 'adminpimda')
+          <h2 class="fw-bold text-gray-800">{{ count($anggotacabanglatihan) }}</h2>
+          @else
           <h2 class="fw-bold text-gray-800">{{ count($anggotapimda) }}</h2>
+          @endif
           <p class="text-muted">Anggota Terdaftar</p>
           <a href="/dashboard/anggota" class="btn btn-info btn-sm">Lihat Detail</a>
         </div>
@@ -60,7 +64,7 @@
   <div class="row mt-4">
 
     <!-- Motivational Quote -->
-    <div class="col-lg-8">
+    <div class="col-lg-12">
       <div class="card shadow-lg border-0">
         <div class="card-body text-center">
           <h4 class="fw-bold text-primary">"Kesuksesan adalah hasil dari kerja keras dan disiplin."</h4>
@@ -70,14 +74,14 @@
     </div>
 
     <!-- Logo or Branding -->
-    <div class="col-lg-4">
+    <!-- <div class="col-lg-4">
       <div class="card shadow-lg border-0">
         <div class="card-body text-center">
           <img src="{{ asset('logotapaksuci3.jpg') }}" alt="Logo Tapak Suci" class="img-fluid" style="max-height: 150px;">
           <p class="text-muted mt-2">Tapak Suci Pekanbaru</p>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 
