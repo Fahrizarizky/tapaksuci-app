@@ -7,15 +7,6 @@
         <a href="/dashboard/cabang-latihan" class="btn btn-primary btn-sm"><i class="fas fa-arrow-left"></i> Back</a>
     </div>
 
-    <div class="col-md-9">
-        @if(session('message'))
-        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-        {{ session('message') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
-    </div>
-
     <div class="card shadow mb-4 col-md-9">
         <div class="card-body">
             <form action="/dashboard/cabang-latihan/store" method="POST">
@@ -28,7 +19,7 @@
                     <label for="kategori" class="font-weight-bold">Kategori Cabang Latihan</label>
                     <select type="text" class="form-control" id="kategori" name="kategori" required>
                         @foreach($jeniskategori as $kategori)
-                        <option>{{$kategori->nama_kategori}}</option>
+                        <option>{{$kategori->nama_kategoricabang}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -44,7 +35,7 @@
                     <label for="pelatih" class="font-weight-bold">Pelatih</label>
                     <select type="text" class="form-control" id="pelatih" name="pelatih" required>
                         @foreach($anggotapimda as $anggota)
-                        <option>{{$anggota->nama}}</option>
+                        <option value=" {{ $anggota->id }} ">{{$anggota->nama}}</option>
                         @endforeach
                     </select>
                 </div>

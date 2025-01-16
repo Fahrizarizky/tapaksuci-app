@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('cabanglatihans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pelatih_id');
             $table->string('kode', 10);
             $table->string('kategori', 50);
             $table->string('nama_cabang', 100);
             $table->string('alamat', 255);
-            $table->string('pelatih', 100);
             $table->timestamps();
         });
     }

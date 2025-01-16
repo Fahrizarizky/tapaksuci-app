@@ -17,4 +17,9 @@ class Cabanglatihan extends Model
     {
         return $this->hasMany(Anggotapimda::class);
     }
+
+    public function pelatih()
+    {
+        return $this->belongsTo(Anggotapimda::class);
+    }
 }

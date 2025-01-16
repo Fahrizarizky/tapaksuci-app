@@ -7,15 +7,6 @@
         <a href="/dashboard/tingkatan" class="btn btn-primary btn-sm"><i class="fas fa-arrow-left"></i> Back</a>
     </div>
 
-    <div class="col-md-9">
-        @if(session('message'))
-        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-        {{ session('message') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
-    </div>
-
     <div class="card shadow mb-4 col-md-9">
         <div class="card-body">
             <form action="/dashboard/tingkatan/store" method="POST">

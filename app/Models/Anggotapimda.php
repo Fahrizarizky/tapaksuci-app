@@ -17,4 +17,9 @@ class Anggotapimda extends Model
     {
         return $this->belongsTo(Cabanglatihan::class);
     }
+
+    public function pelatih()
+    {
+        return $this->hasOne(Cabanglatihan::class);
+    }
 }

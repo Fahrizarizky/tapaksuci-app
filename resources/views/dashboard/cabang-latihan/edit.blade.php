@@ -19,7 +19,7 @@
                     <label for="kategori" class="font-weight-bold">Kategori Cabang Latihan</label>
                     <select type="text" class="form-control" id="kategori" name="kategori" required>
                         @foreach($jeniskategori as $kategori)
-                        <option>{{ $kategori->nama_kategori }}</option>
+                        <option>{{ $kategori->nama_kategoricabang }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -35,8 +35,9 @@
                     <label for="pelatih" class="font-weight-bold">Pelatih</label>
                     <select type="text" class="form-control" id="pelatih" name="pelatih" required>
                         @foreach($anggotapimda as $anggota)
-                       <option>{{ $anggota->nama }}</option>
-                       @endforeach
+                        <option value="{{ $anggota->id }}"
+                            {{ $anggota->id == $selected ? 'selected' : ''}}>{{ $anggota->nama }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Simpan Perubahan</button>

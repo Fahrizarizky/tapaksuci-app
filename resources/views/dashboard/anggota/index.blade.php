@@ -32,6 +32,7 @@
     <table class="table table-striped table-hover table-sm">
       <tr>
         <td><b>No</b></td>
+        <td><b>NIKD</b></td>
         <td><b>Nama Anggota</b></td>
         <td><b>no_telp/WA</b></td>
         <td><b>Tingkatan</b></td>
@@ -41,6 +42,7 @@
       @foreach($anggotapimda as $anggota)
       <tr>
         <td>{{ $loop->iteration }}</td>
+        <td>{{ $anggota->nikd }}</td>
         <td>{{$anggota->nama}}</td>
         <td>{{$anggota->no_telp}}</td>
         <td>{{$anggota->tingkatan}}</td>
@@ -58,6 +60,7 @@
       @foreach($anggotapimdasiswa as $siswa)
       <tr>
         <td>{{ $loop->iteration }}</td>
+        <td>{{ $siswa->nikd }}</td>
         <td>{{$siswa->nama}}</td>
         <td>{{$siswa->no_telp}}</td>
         <td>{{$siswa->tingkatan}}</td>

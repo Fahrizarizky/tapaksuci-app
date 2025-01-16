@@ -305,88 +305,88 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Cabanglatihan::create([
+            'pelatih_id' => 1,
             'kode' => 'CLT01',
             'kategori' => 'AUM - SD/MIM',
             'nama_cabang' => 'Cabang 1',
             'alamat' => 'Pekanbaru Jl.1',
-            'pelatih' => 'Pelatih 1'
         ]);
         Cabanglatihan::create([
+            'pelatih_id' => 2,
             'kode' => 'CLT02',
             'kategori' => 'AUM - SMP',
             'nama_cabang' => 'Cabang 2',
             'alamat' => 'Pekanbaru Jl.2',
-            'pelatih' => 'Pelatih 2'
         ]);
         Cabanglatihan::create([
+            'pelatih_id' => 3,
             'kode' => 'CLT03',
             'kategori' => 'AUM - SMA/SMK/MAM',
             'nama_cabang' => 'Cabang 3',
             'alamat' => 'Pekanbaru Jl.3',
-            'pelatih' => 'Pelatih 3'
         ]);
         Cabanglatihan::create([
+            'pelatih_id' => 4,
             'kode' => 'CLT04',
             'kategori' => 'AUM - PTM/PTMA',
             'nama_cabang' => 'Cabang 4',
             'alamat' => 'Pekanbaru Jl.4',
-            'pelatih' => 'Pelatih 4'
         ]);
         Cabanglatihan::create([
+            'pelatih_id' => 5,
             'kode' => 'CLT05',
             'kategori' => 'AUM - Ponpes',
             'nama_cabang' => 'Cabang 5',
             'alamat' => 'Pekanbaru Jl.5',
-            'pelatih' => 'Pelatih 5'
         ]);
         Cabanglatihan::create([
+            'pelatih_id' => 6,
             'kode' => 'CLT06',
             'kategori' => 'Umum - SD/MI',
             'nama_cabang' => 'Cabang 6',
             'alamat' => 'Pekanbaru Jl.6',
-            'pelatih' => 'Pelatih 6'
         ]);
         Cabanglatihan::create([
+            'pelatih_id' => 7,
             'kode' => 'CLT07',
             'kategori' => 'Umum - SMP',
             'nama_cabang' => 'Cabang 7',
             'alamat' => 'Pekanbaru Jl.7',
-            'pelatih' => 'Pelatih 7'
         ]);
         Cabanglatihan::create([
+            'pelatih_id' => 8,
             'kode' => 'CLT08',
             'kategori' => 'Umum - SMA/SMK/MA',
             'nama_cabang' => 'Cabang 8',
             'alamat' => 'Pekanbaru Jl.8',
-            'pelatih' => 'Pelatih 8'
         ]);
         Cabanglatihan::create([
+            'pelatih_id' => 9,
             'kode' => 'CLT09',
             'kategori' => 'Umum - PTN/PTS',
             'nama_cabang' => 'Cabang 9',
             'alamat' => 'Pekanbaru Jl.9',
-            'pelatih' => 'Pelatih 9'
         ]);
         Cabanglatihan::create([
+            'pelatih_id' => 10,
             'kode' => 'CLT010',
             'kategori' => 'Umum - Ponpes',
             'nama_cabang' => 'Cabang 10',
             'alamat' => 'Pekanbaru Jl.10',
-            'pelatih' => 'Pelatih 10'
         ]);
         Cabanglatihan::create([
+            'pelatih_id' => 5,
             'kode' => 'CLT011',
             'kategori' => 'Umum - Perkantoran',
             'nama_cabang' => 'Cabang 11',
             'alamat' => 'Pekanbaru Jl.11',
-            'pelatih' => 'Pelatih 11'
         ]);
         Cabanglatihan::create([
+            'pelatih_id' => 7,
             'kode' => 'CLT012',
             'kategori' => 'Umum - Perumahan',
             'nama_cabang' => 'Cabang 12',
             'alamat' => 'Pekanbaru Jl.12',
-            'pelatih' => 'Pelatih 12'
         ]);
 
         User::create([

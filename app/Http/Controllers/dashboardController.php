@@ -6,6 +6,7 @@ use App\Models\Anggotapimda;
 use App\Models\Cabanglatihan;
 use App\Models\Jeniskategori;
 use App\Models\Jenistingkatan;
+use App\Models\Kategoricabanglatihan;
 use App\Models\Riwayatkaderisasi;
 use App\Models\Tingkatan;
 use App\Models\User;
@@ -76,7 +77,7 @@ class dashboardController extends Controller
     // CRUD CABANG LATIHAN
     public function getcabanglatihan()
     {
-        $cabanglatihan = Cabanglatihan::all();
+        $cabanglatihan = Cabanglatihan::latest()->get();
 
         // Menampilkan cabang latihan berdasarkan admin cabang yang sedang login
         $cabanglatihanadmin = Cabanglatihan::where('nama_cabang', Auth::user()->cabanglatihan->nama_cabang)->get();
@@ -85,7 +86,8 @@ class dashboardController extends Controller
     }
     public function createcabanglatihan()
     {
-        $jeniskategori = Jeniskategori::all();
+        $jeniskategori = Kategoricabanglatihan::all();
+        // $jeniskategori = Jeniskategori::all();
         $anggotapimda = Anggotapimda::all();
         return view('dashboard.cabang-latihan.create', compact('jeniskategori', 'anggotapimda'));
     }
@@ -96,16 +98,17 @@ class dashboardController extends Controller
             'kategori' => request('kategori'),
             'nama_cabang' => request('nama_cabang'),
             'alamat' => request('alamat'),
-            'pelatih' => request('pelatih'),
+            'pelatih_id' => request('pelatih'),
         ]);
-        return back()->with('message', 'Berhasil menambahkan data');
+        return redirect('/dashboard/cabang-latihan')->with('message', 'Berhasil menambahkan data');
     }
     public function editcabanglatihan($id)
     {
         $cabanglatihan = Cabanglatihan::find($id);
-        $jeniskategori = Jeniskategori::all();
+        $jeniskategori = Kategoricabanglatihan::all();
         $anggotapimda = Anggotapimda::all();
-        return view('dashboard.cabang-latihan.edit', compact('cabanglatihan', 'jeniskategori', 'anggotapimda'));
+        $selected = $cabanglatihan->pelatih->id;
+        return view('dashboard.cabang-latihan.edit', compact('cabanglatihan', 'jeniskategori', 'anggotapimda', 'selected'));
     }
     public function updatecabanglatihan($id)
     {
@@ -115,7 +118,7 @@ class dashboardController extends Controller
             'kategori' => request('kategori'),
             'nama_cabang' => request('nama_cabang'),
             'alamat' => request('alamat'),
-            'pelatih' => request('pelatih'),
+            'pelatih_id' => request('pelatih'),
         ]);
         return redirect('/dashboard/cabang-latihan')->with('message', 'data berhasil di update');
     }
@@ -134,7 +137,7 @@ class dashboardController extends Controller
     // CRUD TINGKATAN
     public function gettingkatan()
     {
-        $tingkatans = Tingkatan::all();
+        $tingkatans = Tingkatan::latest()->get();
         return view('dashboard.tingkatan.index', compact('tingkatans'));
     }
     public function createtingkatan()
@@ -150,7 +153,7 @@ class dashboardController extends Controller
             'kategori' => request('kategori'),
             'tingkatan' => request('tingkatan')
         ]);
-        return back()->with('message', 'bBerhasil menambahkan data');
+        return redirect('/dashboard/tingkatan')->with('message', 'Berhasil menambahkan data');
     }
     public function edittingkatan($id)
     {
@@ -189,7 +192,7 @@ class dashboardController extends Controller
         $newauthcabang = $authcabang->id;
 
         // Untuk mendapatkan data anggota yang memiliki tingkat "Siswa" dan cabang latihan sesuai dengan admin cabang
-        $anggotapimda = Anggotapimda::all();
+        $anggotapimda = Anggotapimda::latest()->get();
         $anggotapimdasiswa = Anggotapimda::where('tingkatan', 'like', 'Siswa%')
             ->where('cabanglatihan_id', $newauthcabang)
             ->get();
@@ -304,7 +307,7 @@ class dashboardController extends Controller
     // CRUD ADMIN CABANG
     public function getadmincabang()
     {
-        $admincabang = User::where('role', 'admincabang')->get();
+        $admincabang = User::where('role', 'admincabang')->latest()->get();
         return view('dashboard.admincabang.index', compact('admincabang'));
     }
 
