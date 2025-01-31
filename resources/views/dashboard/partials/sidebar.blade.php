@@ -1,4 +1,4 @@
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark shadow-lg accordion fixed-top" id="accordionSidebar">
+        <ul style="z-index: 2;" class="navbar-nav bg-gradient-primary sidebar sidebar-dark shadow-lg accordion fixed-top" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center ps-3 py-3" href="/dashboard">
@@ -60,6 +60,24 @@
                     <i class="bi bi-people-fill"></i>
                     <span>Admin Cabang</span>
                     <i class="bi bi-chevron-right"></i>
+                </a>
+            </li>
+            @endcan
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard/kegiatan">
+                    <i class="bi bi-calendar-plus-fill"></i>
+                    <span>Kegiatan</span>
+                </a>
+            </li>
+
+            @can('admincabang')
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard/kegiatan/kegiatansiswa">
+                    <i class="bi bi-calendar-plus-fill"></i>
+                    <span>Kegiatan Siswa</span>
                 </a>
             </li>
             @endcan

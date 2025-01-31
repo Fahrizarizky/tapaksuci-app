@@ -3,10 +3,16 @@
 namespace Database\Seeders;
 
 use App\Models\Anggotapimda;
+use App\Models\Aspeknilailkpts;
+use App\Models\Aspeknilaiukt;
 use App\Models\Cabanglatihan;
 use App\Models\Jeniskategori;
+use App\Models\Jeniskegiatan;
 use App\Models\Jenistingkatan;
 use App\Models\Kategoricabanglatihan;
+use App\Models\Kategoriukt;
+use App\Models\Kegiatansiswa;
+use App\Models\Seluruhpeserta;
 use App\Models\Tingkatan;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -121,10 +127,12 @@ class DatabaseSeeder extends Seeder
             'nama' => 'John Doe',
             'tempat_lahir' => 'Jakarta',
             'tanggal_lahir' => '1990-01-15',
+            'jenis_kelamin' => 'Laki-Laki',
             'alamat' => 'Jl. Merpati No. 10, Jakarta',
             'email' => 'john.doe@example.com',
             'no_telp' => '081234567890',
             'tingkatan' => 'Siswa',
+            'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
             'cabanglatihan_id' => 2,
@@ -132,10 +140,12 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Jane Smith',
             'tempat_lahir' => 'Bandung',
             'tanggal_lahir' => '1992-05-20',
+            'jenis_kelamin' => 'Perempuan',
             'alamat' => 'Jl. Anggrek No. 5, Bandung',
             'email' => 'jane.smith@example.com',
             'no_telp' => '082345678901',
             'tingkatan' => 'Siswa',
+            'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
             'cabanglatihan_id' => 3,
@@ -143,10 +153,12 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Alice Johnson',
             'tempat_lahir' => 'Surabaya',
             'tanggal_lahir' => '1985-07-12',
+            'jenis_kelamin' => 'Perempuan',
             'alamat' => 'Jl. Melati No. 3, Surabaya',
             'email' => 'alice.johnson@example.com',
             'no_telp' => '083456789012',
             'tingkatan' => 'Kader',
+            'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
             'cabanglatihan_id' => 4,
@@ -154,10 +166,12 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Bob Brown',
             'tempat_lahir' => 'Yogyakarta',
             'tanggal_lahir' => '1995-03-30',
+            'jenis_kelamin' => 'Laki-Laki',
             'alamat' => 'Jl. Kenanga No. 8, Yogyakarta',
             'email' => 'bob.brown@example.com',
             'no_telp' => '084567890123',
             'tingkatan' => 'Kader',
+            'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
             'cabanglatihan_id' => 5,
@@ -165,10 +179,12 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Charlie Green',
             'tempat_lahir' => 'Medan',
             'tanggal_lahir' => '1988-09-25',
+            'jenis_kelamin' => 'Laki-Laki',
             'alamat' => 'Jl. Mawar No. 7, Medan',
             'email' => 'charlie.green@example.com',
             'no_telp' => '085678901234',
             'tingkatan' => 'Pendekar',
+            'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
             'cabanglatihan_id' => 6,
@@ -176,10 +192,12 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Diana White',
             'tempat_lahir' => 'Malang',
             'tanggal_lahir' => '1993-12-18',
+            'jenis_kelamin' => 'Perempuan',
             'alamat' => 'Jl. Cempaka No. 9, Malang',
             'email' => 'diana.white@example.com',
             'no_telp' => '086789012345',
             'tingkatan' => 'Pendekar',
+            'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
             'cabanglatihan_id' => 7,
@@ -187,10 +205,12 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Evan Black',
             'tempat_lahir' => 'Makassar',
             'tanggal_lahir' => '1997-11-10',
+            'jenis_kelamin' => 'Laki-Laki',
             'alamat' => 'Jl. Dahlia No. 4, Makassar',
             'email' => 'evan.black@example.com',
             'no_telp' => '087890123456',
             'tingkatan' => 'Siswa',
+            'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
             'cabanglatihan_id' => 8,
@@ -198,10 +218,12 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Fiona Blue',
             'tempat_lahir' => 'Semarang',
             'tanggal_lahir' => '1991-02-22',
+            'jenis_kelamin' => 'Perempuan',
             'alamat' => 'Jl. Sakura No. 2, Semarang',
             'email' => 'fiona.blue@example.com',
             'no_telp' => '088901234567',
             'tingkatan' => 'Kader',
+            'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
             'cabanglatihan_id' => 9,
@@ -209,10 +231,12 @@ class DatabaseSeeder extends Seeder
             'nama' => 'George Silver',
             'tempat_lahir' => 'Palembang',
             'tanggal_lahir' => '1987-06-15',
+            'jenis_kelamin' => 'Laki-Laki',
             'alamat' => 'Jl. Tulip No. 6, Palembang',
             'email' => 'george.silver@example.com',
             'no_telp' => '089012345678',
             'tingkatan' => 'Pendekar',
+            'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
             'cabanglatihan_id' => 10,
@@ -220,10 +244,12 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Hannah Gold',
             'tempat_lahir' => 'Bali',
             'tanggal_lahir' => '1994-04-10',
+            'jenis_kelamin' => 'Perempuan',
             'alamat' => 'Jl. Pahlawan No. 1, Bali',
             'email' => 'hannah.gold@example.com',
             'no_telp' => '081234567899',
             'tingkatan' => 'Siswa',
+            'tahun_masuk' => '2025'
         ]);
 
         Tingkatan::create([
@@ -405,6 +431,104 @@ class DatabaseSeeder extends Seeder
             'cabanglatihan_id' => 1,
             'role' => 'admincabang',
             'status' => true
+        ]);
+
+        Jeniskegiatan::create([
+            'nama' => 'Selekda'
+        ]);
+        Jeniskegiatan::create([
+            'nama' => 'UKT Siswa'
+        ]);
+        Jeniskegiatan::create([
+            'nama' => 'LKPTS'
+        ]);
+        Jeniskegiatan::create([
+            'nama' => 'Job Training'
+        ]);
+        Jeniskegiatan::create([
+            'nama' => 'Musyawarah Daerah'
+        ]);
+        Jeniskegiatan::create([
+            'nama' => 'Lainnya'
+        ]);
+
+        Kategoriukt::create([
+            'nama' => 'Siswa Dasar Ke 1',
+            'kegiatan_id' => 1
+        ]);
+        Kategoriukt::create([
+            'nama' => 'Siswa 1 Ke 2',
+        ]);
+        Kategoriukt::create([
+            'nama' => 'Siswa 2 Ke 3',
+        ]);
+        Kategoriukt::create([
+            'nama' => 'Siswa 3 Ke 4',
+        ]);
+        Kategoriukt::create([
+            'nama' => 'Siswa 4 Ke Kader Dasar',
+        ]);
+
+        Aspeknilaiukt::create([
+            'nama' => 'AIK',
+            'kegiatan_id' => 1
+        ]);
+        Aspeknilaiukt::create([
+            'nama' => 'Ilmu Pencak Silat',
+            'kegiatan_id' => 1
+        ]);
+        Aspeknilaiukt::create([
+            'nama' => 'Pengalaman Organisasi',
+            'kegiatan_id' => 1
+        ]);
+        Aspeknilaiukt::create([
+            'nama' => 'Pembinaan Fisik dan Mental',
+            'kegiatan_id' => 1
+        ]);
+        Aspeknilaiukt::create([
+            'nama' => 'Kesehatan Olahraga',
+            'kegiatan_id' => 1
+        ]);
+
+        Aspeknilailkpts::create([
+            'nama' => 'Tradisi Tapak Suci',
+            'kegiatan_id' => 2
+        ]);
+        Aspeknilailkpts::create([
+            'nama' => 'Massage Kesehatan',
+            'kegiatan_id' => 2
+        ]);
+        Aspeknilailkpts::create([
+            'nama' => 'Ragawi',
+            'kegiatan_id' => 2
+        ]);
+        Aspeknilailkpts::create([
+            'nama' => 'Kepemimpinan dan Keorganisasian',
+            'kegiatan_id' => 2
+        ]);
+        Aspeknilailkpts::create([
+            'nama' => 'Metodologi Kepelatihan',
+            'kegiatan_id' => 2
+        ]);
+        Aspeknilailkpts::create([
+            'nama' => 'AIK',
+            'kegiatan_id' => 2
+        ]);
+        Aspeknilailkpts::create([
+            'nama' => 'Peraturan Pertandingan dan Perwasitan',
+            'kegiatan_id' => 2
+        ]);
+        Aspeknilailkpts::create([
+            'nama' => 'Kosegu',
+            'kegiatan_id' => 2
+        ]);
+        Aspeknilailkpts::create([
+            'nama' => 'Fisik dan Mental',
+            'kegiatan_id' => 2
+        ]);
+        Aspeknilailkpts::create([
+            'nama' => 'Karya Tulis / Nyata',
+            'kegiatan_id' => 2
         ]);
     }
 }

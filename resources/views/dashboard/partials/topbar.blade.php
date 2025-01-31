@@ -1,4 +1,4 @@
-                <nav style="z-index: 10;" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top">
+                <nav style="z-index: 1;" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -46,7 +46,8 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->username }}</span>
-                                <h5 class="bi bi-person-circle"></h6>
+                                <h5 class="bi bi-person-circle">
+                                    </h6>
                             </a>
                         </li>
 

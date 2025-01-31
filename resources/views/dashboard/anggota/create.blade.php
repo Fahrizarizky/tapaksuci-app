@@ -37,6 +37,13 @@
                     <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
                 </div>
                 <div class="form-group">
+                    <label for="jenis_kelamin" class="font-weight-bold">Jenis Kelamin</label>
+                    <select type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
+                        <option value="Laki-Laki">Laki-Laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="alamat" class="font-weight-bold">Alamat</label>
                     <input type="text" class="form-control" id="alamat" name="alamat" required>
                 </div>
@@ -63,6 +70,10 @@
                         <option>{{$item->tingkatan}}</option>
                         @endforeach
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="tahun_masuk" class="font-weight-bold">Tahun Masuk Tapak Suci</label>
+                    <input type="text" class="form-control" id="tahun_masuk" name="tahun_masuk">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Simpan</button>
             </form>

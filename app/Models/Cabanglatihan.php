@@ -22,4 +22,9 @@ class Cabanglatihan extends Model
     {
         return $this->belongsTo(Anggotapimda::class);
     }
+
+    public function kegiatansiswa()
+    {
+        return $this->hasMany(Kegiatansiswa::class);
+    }
 }

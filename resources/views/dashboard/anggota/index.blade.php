@@ -36,6 +36,7 @@
         <td><b>Nama Anggota</b></td>
         <td><b>no_telp/WA</b></td>
         <td><b>Tingkatan</b></td>
+        <td><b>Tahun Masuk</b></td>
         <td><b>Riwayat Kaderisasi</b></td>
       </tr>
       @can('adminpimda')
@@ -46,6 +47,7 @@
         <td>{{$anggota->nama}}</td>
         <td>{{$anggota->no_telp}}</td>
         <td>{{$anggota->tingkatan}}</td>
+        <td>{{$anggota->tahun_masuk}}</td>
         <td><a href="/dashboard/anggota/{{ $anggota->id }}" class="btn btn-info btn-sm shadow-sm"><i class="bi bi-eye"></i></a>
           <form action="/dashboard/anggota/delete/{{ $anggota->id }}" method="post" class="d-inline">
             @csrf
@@ -64,6 +66,7 @@
         <td>{{$siswa->nama}}</td>
         <td>{{$siswa->no_telp}}</td>
         <td>{{$siswa->tingkatan}}</td>
+        <td>{{$siswa->tahun_masuk}}</td>
         <td><a href="/dashboard/anggota/{{ $siswa->id }}" class="btn btn-info btn-sm shadow-sm"><i class="bi bi-eye"></i></a>
           <form action="/dashboard/anggota/delete/{{ $siswa->id }}" method="post" class="d-inline">
             @csrf

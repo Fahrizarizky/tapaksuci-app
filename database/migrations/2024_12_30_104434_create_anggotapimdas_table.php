@@ -18,10 +18,12 @@ return new class extends Migration
             $table->string('nama', 100);
             $table->string('tempat_lahir', 100);
             $table->string('tanggal_lahir', 100);
+            $table->string('jenis_kelamin', 100);
             $table->string('alamat', 100);
             $table->string('email', 100)->nullable();
             $table->string('no_telp', 50);
             $table->string('tingkatan', 50);
+            $table->string('tahun_masuk', 50);
             $table->timestamps();
         });
     }

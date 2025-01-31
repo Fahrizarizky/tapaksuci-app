@@ -57,6 +57,14 @@
         </div>
         <div class="row mb-3">
           <div class="col-md-4">
+            <strong>Jenis Kelamin:</strong>
+          </div>
+          <div class="col-md-8 text-muted">
+            {{$anggota->jenis_kelamin}}
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-4">
             <strong>Alamat:</strong>
           </div>
           <div class="col-md-8 text-muted">
@@ -93,6 +101,14 @@
           </div>
           <div class="col-md-8 text-muted">
             {{$anggota->tingkatan}}
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <strong>Tahun Masuk Tapak Suci:</strong>
+          </div>
+          <div class="col-md-8 text-muted">
+            {{$anggota->tahun_masuk}}
           </div>
         </div>
       </div>
@@ -166,6 +182,11 @@
                   <option value="{{ $tingkat->tingkatan }}" {{ $anggota->tingkatan == $tingkat->tingkatan ? 'selected' : '' }}>{{ $tingkat->tingkatan }}</option>
                   @endforeach
                 </select>
+              </div>
+              <!-- Inputan 10:  Tahun Masuk Tapak Suci -->
+              <div class="form-group">
+                <label for="tahun_masuk">Tahun Masuk Tapak Suci</label>
+                <input class="form-control" id="tahun_masuk" name="tahun_masuk" value="{{ $anggota->tahun_masuk }}" required>
               </div>
               <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
             </form>

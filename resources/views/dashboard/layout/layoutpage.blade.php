@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Admin Page</title>
+    @notifyCss
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -39,7 +40,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div style="z-index: 0;" class="container-fluid">
 
                     <!-- di sini adalah heading -->
 
@@ -62,6 +63,7 @@
     </div>
     <!-- End of Page Wrapper -->
 
+    @notifyJs
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -98,6 +100,17 @@
             // Set gambar URL ke dalam elemen gambar di modal
             var modalGambar = $(this).find('#modalGambar');
             modalGambar.attr('src', gambarUrl);
+        });
+    </script>
+    <script>
+        document.getElementById('add-aspect-btn').addEventListener('click', function() {
+            const container = document.getElementById('aspek-nilai-container');
+            const newAspect = document.createElement('div');
+            newAspect.classList.add('form-check', 'mb-2');
+            newAspect.innerHTML = `
+                <input type="text" class="form-control mb-2" name="new_aspects[]" placeholder="Nama Aspek Baru">
+            `;
+            container.appendChild(newAspect);
         });
     </script>
 </body>

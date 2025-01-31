@@ -70,3 +70,35 @@ Route::prefix('dashboard/admincabang')->middleware(['auth', 'adminpimda'])->grou
     Route::get('/aktif/{id}', [dashboardController::class, 'aktifadmincabang']);
     Route::get('/nonaktif/{id}', [dashboardController::class, 'nonaktifadmincabang']);
 });
+
+//ROUTE KEGIATAN ADMIN PIMDA
+Route::prefix('dashboard/kegiatan')->middleware(['auth', 'adminaktif'])->group(function () {
+    Route::get('/', [dashboardController::class, 'getkegiatan']);
+    Route::get('/create', [dashboardController::class, 'createkegiatan']);
+    Route::post('/store', [dashboardController::class, 'storekegiatan']);
+    Route::get('/edit/{id}', [dashboardController::class, 'editkegiatan']);
+    Route::post('/update/{id}', [dashboardController::class, 'updatekegiatan']);
+    Route::get('/show/{id}', [dashboardController::class, 'showkegiatan']);
+
+    //ROUTE TAMBAH ASPEK NILAI
+    Route::post('/tambahaspekukt/store/{id}', [dashboardController::class, 'storetambahaspekukt']);
+    Route::post('/tambahaspeklkpts/store/{id}', [dashboardController::class, 'storetambahaspeklkpts']);
+    Route::get('/tambahaspek/{id}', [dashboardController::class, 'tambahaspek']);
+
+    //ROUTE KEGIATAN ADMIN CABANG
+    //ROUTE SIDEBAR KEGIATAN SISWA
+    Route::get('/kegiatansiswa', [dashboardController::class, 'kegiatansiswa']);
+
+    //ROUTE DAFTARKAN KEGIATAN SISWA
+    Route::get('/daftarkan/{id}', [dashboardController::class, 'daftarkan']);
+});
+
+//ROUTE LANJUTAN DAFTARKAN KEGIATAN SISWA DI ATAS
+Route::post('/dashboard/kegiatansiswa/store', [dashboardController::class, 'storekegiatansiswa'])->middleware(['auth', 'adminaktif']);
+
+//ROUTE AKTIF & NONAKTIF KEGIATAN
+Route::get('/dashboard/kegiatan/aktif/{id}', [dashboardController::class, 'aktifkegiatan'])->middleware(['auth', 'adminaktif']);
+Route::get('/dashboard/kegiatan/nonaktif/{id}', [dashboardController::class, 'nonaktifkegiatan'])->middleware(['auth', 'adminaktif']);
+
+//ROUTE EDIT HALAMAN PDF
+Route::get('/dashboard/tabel/{id}', [dashboardController::class, 'tabel'])->middleware(['auth', 'adminaktif']);
