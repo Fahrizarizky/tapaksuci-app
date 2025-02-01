@@ -7,6 +7,29 @@
     <a href="/dashboard/kegiatan/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="bi bi-plus-circle"></i> Kegiatan</a>
 </div>
 
+@php
+$notifications = auth()->user()->unreadNotifications;
+@endphp
+
+@if($notifications->count() > 0)
+@can('admincabang')
+<div class="dropdown mb-3">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="notificationDropdown" data-bs-toggle="dropdown">
+        Notifikasi ({{ $notifications->count() }})
+    </button>
+    <ul class="dropdown-menu">
+        @foreach ($notifications as $notification)
+        <li>
+            <a class="dropdown-item">
+                {{ $notification->data['message'] }}
+            </a>
+        </li>
+        @endforeach
+    </ul>
+</div>
+@endcan
+@endif
+
 <div class="row justify-content-center">
     <div class="col-md-8">
         @if(session('message'))

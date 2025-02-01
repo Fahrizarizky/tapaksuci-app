@@ -16,7 +16,7 @@
     <div class="card-body">
         @if($kegiatan->jenis === 'UKT Siswa')
         <h1 class="mb-4">Form Tambah Data kegiatan UKT</h1>
-        <form action="/dashboard/kegiatan/tambahaspekukt/store/{{ $kegiatan->id }}" method="POST">
+        <form class="mb-5" action="/dashboard/kegiatan/tambahkategoriukt/store/{{ $kegiatan->id }}" method="POST">
             @csrf
             <!-- Nama kegiatan -->
             <div class="mb-3">
@@ -40,7 +40,13 @@
                     @endforeach
                 </select>
             </div>
+            <!-- Tombol Simpan -->
+            <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
+        <hr class="border border-primary border-3 opacity-75">
 
+        <form action="/dashboard/kegiatan/tambahaspekukt/store/{{ $kegiatan->id }}" method="POST">
+            @csrf
             <!-- Aspek Nilai -->
             <div class="mb-3">
                 <label for="aspek_nilai" class="form-label">Aspek Nilai</label>
@@ -52,7 +58,7 @@
             </div>
             <div class="mb-3">
                 <label for="aspeknilai_ukt" class="form-label">Aspek Nilai UKT</label>
-                <input id="aspeknilai_ukt" name="aspeknilai_ukt" class="form-control" />
+                <input id="aspeknilai_ukt" name="aspeknilai_ukt" class="form-control" required />
             </div>
 
             <!-- Tombol Simpan -->

@@ -17,6 +17,7 @@ use App\Models\Riwayatkaderisasi;
 use App\Models\Seluruhpeserta;
 use App\Models\Tingkatan;
 use App\Models\User;
+use App\Notifications\DataAddedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -405,9 +406,25 @@ class dashboardController extends Controller
     }
     public function storekegiatan()
     {
-        Kegiatan::create(request()->all());
+        $data = Kegiatan::create(request()->all());
+
+        // Dapatkan Admin 2 (misalnya memiliki role 'admin_cabang')
+        $adminCabang = User::where('role', 'admincabang')->get();
+
+        // Kirim notifikasi ke Admin 2
+        foreach ($adminCabang as $admin) {
+            $admin->notify(new DataAddedNotification($data));
+        }
+
         return redirect('/dashboard/kegiatan')->with('message', 'Berhasil menambahkan data');
     }
+
+    public function show($id)
+    {
+        $data = Kegiatan::findOrFail($id);
+        return view('data.show', compact('data'));
+    }
+
     public function editkegiatan($id)
     {
         $kegiatan = Kegiatan::find($id);
@@ -467,11 +484,6 @@ class dashboardController extends Controller
     }
     public function storetambahaspekukt($id)
     {
-        //Mengubah kategori ukt pada setiap kegiatan
-        $kegiatan = Kegiatan::find($id);
-        $kegiatan->kategori_ukt = request()->input('kategori_ukt');
-        $kegiatan->save();
-
         //Menambahkan aspek nilai ukt di setiap kegiatan
         Aspeknilaiukt::create([
             'nama' => request()->input('aspeknilai_ukt'),
@@ -479,6 +491,15 @@ class dashboardController extends Controller
         ]);
 
         return redirect('/dashboard/kegiatan/tambahaspek/' . $id)->with('message', 'Berhasil menambahkan aspek nilai UKT');
+    }
+    public function storetambahkategoriukt($id)
+    {
+        //Mengubah kategori ukt pada setiap kegiatan
+        $kegiatan = Kegiatan::find($id);
+        $kegiatan->kategori_ukt = request()->input('kategori_ukt');
+        $kegiatan->save();
+
+        return redirect('/dashboard/kegiatan/tambahaspek/' . $id)->with('message', 'Berhasil menambahkan Kategori UKT');
     }
     public function storetambahaspeklkpts($id)
     {
@@ -550,7 +571,15 @@ class dashboardController extends Controller
         //menambahkan data jumlah peserta di masing2 kegiatan
         $kegiatanfirst = Kegiatan::where('id', request()->input('kegiatan_id'))->first();
         $kegiatanfirst->jumlah_peserta += 1;
-        $kegiatanfirst->jumlah_cabang += 1;
+
+        //cek jika perserta yang di daftarkan masih dengan satu cabang, maka cabang tidak akan bertambah
+        //yang bertambah hanya pesertanya saja
+        if (empty(Seluruhpeserta::where('cabang', $namacabang)->first())) {
+            $kegiatanfirst->jumlah_cabang += 1;
+        } else {
+            $kegiatanfirst->jumlah_cabang = $kegiatanfirst->jumlah_cabang;
+        }
+
         $kegiatanfirst->update();
 
         return redirect('/dashboard/kegiatan/kegiatansiswa')->with('message', 'Berhasil mendaftarkan siswa');

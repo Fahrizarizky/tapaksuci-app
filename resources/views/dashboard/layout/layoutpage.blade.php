@@ -103,14 +103,19 @@
         });
     </script>
     <script>
-        document.getElementById('add-aspect-btn').addEventListener('click', function() {
-            const container = document.getElementById('aspek-nilai-container');
-            const newAspect = document.createElement('div');
-            newAspect.classList.add('form-check', 'mb-2');
-            newAspect.innerHTML = `
-                <input type="text" class="form-control mb-2" name="new_aspects[]" placeholder="Nama Aspek Baru">
-            `;
-            container.appendChild(newAspect);
+        document.getElementById('notificationDropdown').addEventListener('click', function() {
+            fetch("{{ route('notifications.read') }}", {
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                        "Content-Type": "application/json"
+                    }
+                }).then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('notificationDropdown').textContent = "Notifikasi (0)";
+                    }
+                });
         });
     </script>
 </body>

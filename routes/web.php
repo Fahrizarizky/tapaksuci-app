@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\dashboardController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // AUTHENTICATION
@@ -82,6 +83,7 @@ Route::prefix('dashboard/kegiatan')->middleware(['auth', 'adminaktif'])->group(f
 
     //ROUTE TAMBAH ASPEK NILAI
     Route::post('/tambahaspekukt/store/{id}', [dashboardController::class, 'storetambahaspekukt']);
+    Route::post('/tambahkategoriukt/store/{id}', [dashboardController::class, 'storetambahkategoriukt']);
     Route::post('/tambahaspeklkpts/store/{id}', [dashboardController::class, 'storetambahaspeklkpts']);
     Route::get('/tambahaspek/{id}', [dashboardController::class, 'tambahaspek']);
 
@@ -102,3 +104,10 @@ Route::get('/dashboard/kegiatan/nonaktif/{id}', [dashboardController::class, 'no
 
 //ROUTE EDIT HALAMAN PDF
 Route::get('/dashboard/tabel/{id}', [dashboardController::class, 'tabel'])->middleware(['auth', 'adminaktif']);
+
+Route::post('/notifications/mark-as-read', function () {
+    Auth::user()->unreadNotifications->markAsRead();
+    return response()->json(['success' => true]);
+})->middleware('auth')->name('notifications.read');
+
+Route::get('/data/{id}', [dashboardController::class, 'show'])->middleware('auth')->name('data.show');
