@@ -25,8 +25,14 @@ class User extends Authenticatable
 
     protected $guarded = ['id'];
 
-    public function cabanglatihan() {
+    public function cabanglatihan()
+    {
         return $this->belongsTo(Cabanglatihan::class);
+    }
+
+    public function kegiatan()
+    {
+        return $this->belongsTo(Kegiatan::class);
     }
 
     /**

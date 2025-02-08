@@ -131,7 +131,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Jl. Merpati No. 10, Jakarta',
             'email' => 'john.doe@example.com',
             'no_telp' => '081234567890',
-            'tingkatan' => 'Siswa',
+            'tingkatan' => 'Siswa Dasar',
             'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
@@ -144,7 +144,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Jl. Anggrek No. 5, Bandung',
             'email' => 'jane.smith@example.com',
             'no_telp' => '082345678901',
-            'tingkatan' => 'Siswa',
+            'tingkatan' => 'Siswa 1',
             'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
@@ -157,7 +157,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Jl. Melati No. 3, Surabaya',
             'email' => 'alice.johnson@example.com',
             'no_telp' => '083456789012',
-            'tingkatan' => 'Kader',
+            'tingkatan' => 'Siswa 2',
             'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
@@ -170,7 +170,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Jl. Kenanga No. 8, Yogyakarta',
             'email' => 'bob.brown@example.com',
             'no_telp' => '084567890123',
-            'tingkatan' => 'Kader',
+            'tingkatan' => 'Siswa 3',
             'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
@@ -183,7 +183,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Jl. Mawar No. 7, Medan',
             'email' => 'charlie.green@example.com',
             'no_telp' => '085678901234',
-            'tingkatan' => 'Pendekar',
+            'tingkatan' => 'Siswa 4',
             'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
@@ -196,7 +196,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Jl. Cempaka No. 9, Malang',
             'email' => 'diana.white@example.com',
             'no_telp' => '086789012345',
-            'tingkatan' => 'Pendekar',
+            'tingkatan' => 'Kader Dasar',
             'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
@@ -209,7 +209,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Jl. Dahlia No. 4, Makassar',
             'email' => 'evan.black@example.com',
             'no_telp' => '087890123456',
-            'tingkatan' => 'Siswa',
+            'tingkatan' => 'Kader Muda',
             'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
@@ -222,7 +222,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Jl. Sakura No. 2, Semarang',
             'email' => 'fiona.blue@example.com',
             'no_telp' => '088901234567',
-            'tingkatan' => 'Kader',
+            'tingkatan' => 'Kader Madya',
             'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
@@ -235,7 +235,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Jl. Tulip No. 6, Palembang',
             'email' => 'george.silver@example.com',
             'no_telp' => '089012345678',
-            'tingkatan' => 'Pendekar',
+            'tingkatan' => 'Kader Kepala',
             'tahun_masuk' => '2025'
         ]);
         Anggotapimda::create([
@@ -248,7 +248,7 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'Jl. Pahlawan No. 1, Bali',
             'email' => 'hannah.gold@example.com',
             'no_telp' => '081234567899',
-            'tingkatan' => 'Siswa',
+            'tingkatan' => 'Pendekar Kepala',
             'tahun_masuk' => '2025'
         ]);
 

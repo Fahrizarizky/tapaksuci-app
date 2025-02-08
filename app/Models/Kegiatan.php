@@ -32,4 +32,9 @@ class Kegiatan extends Model
     {
         return $this->hasMany(Kegiatansiswa::class);
     }
+
+    public function adminkegiatan()
+    {
+        return $this->hasOne(User::class);
+    }
 }

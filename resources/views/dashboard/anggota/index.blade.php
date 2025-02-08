@@ -3,7 +3,12 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
+  @can('adminpimda')
   <h1 class="h3 mb-0 text-dark text-uppercase fw-bold">Anggota Pimda</h1>
+  @endcan
+  @can('admincabang')
+  <h1 class="h3 mb-0 text-dark text-uppercase fw-bold">Anggota Cabang</h1>
+  @endcan
   <a href="/dashboard/anggota/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="bi bi-plus-circle"></i> Anggota</a>
 </div>
 

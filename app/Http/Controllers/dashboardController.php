@@ -71,18 +71,22 @@ class dashboardController extends Controller
     // DASHBOARD
     public function index()
     {
-        // Untuk menentukan cabang latihan berdasarkan admin cabang yang sedang login
-        $authcabang = Cabanglatihan::where('nama_cabang', Auth::user()->cabanglatihan->nama_cabang)->first();
-        $newauthcabang = $authcabang->id;
+        if (Auth::user()->role == 'adminpimda' || Auth::user()->role == 'admincabang') {
 
-        // Untuk mendapatkan data anggota cabang latihan sesuai dengan admin cabang
-        $anggotapimdasiswa = Anggotapimda::where('cabanglatihan_id', $newauthcabang)->get();
+            // Untuk menentukan cabang latihan berdasarkan admin cabang yang sedang login
+            $authcabang = Cabanglatihan::where('nama_cabang', Auth::user()->cabanglatihan->nama_cabang)->first();
+            $newauthcabang = $authcabang->id;
 
-        $anggotacabanglatihan = $anggotapimdasiswa;
-        $anggotapimda = Anggotapimda::all();
-        $cabanglatihan = Cabanglatihan::all();
-        $tingkatan = Tingkatan::all();
-        return view('dashboard.index', compact('anggotapimda', 'cabanglatihan', 'tingkatan', 'anggotacabanglatihan'));
+            // Untuk mendapatkan data anggota cabang latihan sesuai dengan admin cabang
+            $anggotapimdasiswa = Anggotapimda::where('cabanglatihan_id', $newauthcabang)->get();
+
+            $anggotacabanglatihan = $anggotapimdasiswa;
+            $anggotapimda = Anggotapimda::all();
+            $cabanglatihan = Cabanglatihan::all();
+            $tingkatan = Tingkatan::all();
+            return view('dashboard.index', compact('anggotapimda', 'cabanglatihan', 'tingkatan', 'anggotacabanglatihan'));
+        }
+        return view('dashboard.index');
     }
 
     // CRUD CABANG LATIHAN
@@ -203,10 +207,45 @@ class dashboardController extends Controller
         $newauthcabang = $authcabang->id;
 
         // Untuk mendapatkan data anggota yang memiliki tingkat "Siswa" dan cabang latihan sesuai dengan admin cabang
-        $anggotapimda = Anggotapimda::latest()->get();
+        $anggotapimda = Anggotapimda::OrderByRaw("CASE
+                                                    WHEN tingkatan = 'Pendekar Besar' THEN 1
+                                                    WHEN tingkatan = 'Pendekar Utama' THEN 2
+                                                    WHEN tingkatan = 'Pendekar Kepala' THEN 3
+                                                    WHEN tingkatan = 'Pendekar Madya' THEN 4
+                                                    WHEN tingkatan = 'Pendekar Muda' THEN 5
+                                                    WHEN tingkatan = 'Kader Utama' THEN 6
+                                                    WHEN tingkatan = 'Kader Kepala' THEN 7
+                                                    WHEN tingkatan = 'Kader Madya' THEN 8
+                                                    WHEN tingkatan = 'Kader Muda' THEN 9
+                                                    WHEN tingkatan = 'Kader Dasar' THEN 10
+                                                    WHEN tingkatan = 'Siswa 4' THEN 11
+                                                    WHEN tingkatan = 'Siswa 3' THEN 12
+                                                    WHEN tingkatan = 'Siswa 2' THEN 13
+                                                    WHEN tingkatan = 'Siswa 1' THEN 14
+                                                    WHEN tingkatan = 'Siswa Dasar' THEN 15
+                                                    ELSE 16
+                                                    END
+                                                    ")->get();
         $anggotapimdasiswa = Anggotapimda::where('tingkatan', 'like', 'Siswa%')
-            ->where('cabanglatihan_id', $newauthcabang)
-            ->get();
+            ->where('cabanglatihan_id', $newauthcabang)->OrderByRaw("CASE
+                                                    WHEN tingkatan = 'Pendekar Besar' THEN 1
+                                                    WHEN tingkatan = 'Pendekar Utama' THEN 2
+                                                    WHEN tingkatan = 'Pendekar Kepala' THEN 3
+                                                    WHEN tingkatan = 'Pendekar Madya' THEN 4
+                                                    WHEN tingkatan = 'Pendekar Muda' THEN 5
+                                                    WHEN tingkatan = 'Kader Utama' THEN 6
+                                                    WHEN tingkatan = 'Kader Kepala' THEN 7
+                                                    WHEN tingkatan = 'Kader Madya' THEN 8
+                                                    WHEN tingkatan = 'Kader Muda' THEN 9
+                                                    WHEN tingkatan = 'Kader Dasar' THEN 10
+                                                    WHEN tingkatan = 'Siswa 4' THEN 11
+                                                    WHEN tingkatan = 'Siswa 3' THEN 12
+                                                    WHEN tingkatan = 'Siswa 2' THEN 13
+                                                    WHEN tingkatan = 'Siswa 1' THEN 14
+                                                    WHEN tingkatan = 'Siswa Dasar' THEN 15
+                                                    ELSE 16
+                                                    END
+                                                    ")->latest()->get();
 
         return view('dashboard.anggota.index', compact('anggotapimda', 'anggotapimdasiswa'));
     }
@@ -274,17 +313,71 @@ class dashboardController extends Controller
     // FILTER ANGGOTA
     public function siswa()
     {
-        $anggotapimda = Anggotapimda::where('tingkatan', 'like', 'Siswa%')->get();
+        $anggotapimda = Anggotapimda::OrderByRaw("CASE
+                                                    WHEN tingkatan = 'Pendekar Besar' THEN 11
+                                                    WHEN tingkatan = 'Pendekar Utama' THEN 12
+                                                    WHEN tingkatan = 'Pendekar Kepala' THEN 13
+                                                    WHEN tingkatan = 'Pendekar Madya' THEN 14
+                                                    WHEN tingkatan = 'Pendekar Muda' THEN 55
+                                                    WHEN tingkatan = 'Kader Utama' THEN 6
+                                                    WHEN tingkatan = 'Kader Kepala' THEN 7
+                                                    WHEN tingkatan = 'Kader Madya' THEN 8
+                                                    WHEN tingkatan = 'Kader Muda' THEN 9
+                                                    WHEN tingkatan = 'Kader Dasar' THEN 10
+                                                    WHEN tingkatan = 'Siswa 4' THEN 1
+                                                    WHEN tingkatan = 'Siswa 3' THEN 2
+                                                    WHEN tingkatan = 'Siswa 2' THEN 3
+                                                    WHEN tingkatan = 'Siswa 1' THEN 4
+                                                    WHEN tingkatan = 'Siswa Dasar' THEN 5
+                                                    ELSE 16
+                                                    END
+                                                    ")->get();
         return view('dashboard.anggota.index', compact('anggotapimda'));
     }
     public function kader()
     {
-        $anggotapimda = Anggotapimda::where('tingkatan', 'like', 'Kader%')->get();
+        $anggotapimda = Anggotapimda::OrderByRaw("CASE
+                                                    WHEN tingkatan = 'Pendekar Besar' THEN 6
+                                                    WHEN tingkatan = 'Pendekar Utama' THEN 7
+                                                    WHEN tingkatan = 'Pendekar Kepala' THEN 8
+                                                    WHEN tingkatan = 'Pendekar Madya' THEN 9
+                                                    WHEN tingkatan = 'Pendekar Muda' THEN 10
+                                                    WHEN tingkatan = 'Kader Utama' THEN 1
+                                                    WHEN tingkatan = 'Kader Kepala' THEN 2
+                                                    WHEN tingkatan = 'Kader Madya' THEN 3
+                                                    WHEN tingkatan = 'Kader Muda' THEN 4
+                                                    WHEN tingkatan = 'Kader Dasar' THEN 5
+                                                    WHEN tingkatan = 'Siswa 4' THEN 11
+                                                    WHEN tingkatan = 'Siswa 3' THEN 12
+                                                    WHEN tingkatan = 'Siswa 2' THEN 13
+                                                    WHEN tingkatan = 'Siswa 1' THEN 14
+                                                    WHEN tingkatan = 'Siswa Dasar' THEN 15
+                                                    ELSE 16
+                                                    END
+                                                    ")->get();
         return view('dashboard.anggota.index', compact('anggotapimda'));
     }
     public function pendekar()
     {
-        $anggotapimda = Anggotapimda::where('tingkatan', 'like', 'Pendekar%')->get();
+        $anggotapimda = Anggotapimda::OrderByRaw("CASE
+                                                    WHEN tingkatan = 'Pendekar Besar' THEN 1
+                                                    WHEN tingkatan = 'Pendekar Utama' THEN 2
+                                                    WHEN tingkatan = 'Pendekar Kepala' THEN 3
+                                                    WHEN tingkatan = 'Pendekar Madya' THEN 4
+                                                    WHEN tingkatan = 'Pendekar Muda' THEN 5
+                                                    WHEN tingkatan = 'Kader Utama' THEN 6
+                                                    WHEN tingkatan = 'Kader Kepala' THEN 7
+                                                    WHEN tingkatan = 'Kader Madya' THEN 8
+                                                    WHEN tingkatan = 'Kader Muda' THEN 9
+                                                    WHEN tingkatan = 'Kader Dasar' THEN 10
+                                                    WHEN tingkatan = 'Siswa 4' THEN 11
+                                                    WHEN tingkatan = 'Siswa 3' THEN 12
+                                                    WHEN tingkatan = 'Siswa 2' THEN 13
+                                                    WHEN tingkatan = 'Siswa 1' THEN 14
+                                                    WHEN tingkatan = 'Siswa Dasar' THEN 15
+                                                    ELSE 16
+                                                    END
+                                                    ")->get();
         return view('dashboard.anggota.index', compact('anggotapimda'));
     }
 
@@ -394,9 +487,11 @@ class dashboardController extends Controller
     //CRUD KEGIATAN
     public function getkegiatan()
     {
+        $admin = User::where('id', Auth::user()->id)->first();
+        $adminkegiatan = $admin->kegiatan;
         $kegiatans = Kegiatan::all();
         $iduser = Auth::user()->id;
-        return view('dashboard.kegiatan.index', compact('kegiatans', 'iduser'));
+        return view('dashboard.kegiatan.index', compact('kegiatans', 'iduser', 'adminkegiatan'));
     }
     public function createkegiatan()
     {
@@ -468,6 +563,47 @@ class dashboardController extends Controller
         $kegiatan->status = false;
         $kegiatan->save();
         return redirect('/dashboard/kegiatan')->with('message', 'Kegiatan berhasil di nonaktifkan');
+    }
+
+    //CRUD ADMIN KEGIATAN
+    public function getadminkegiatan()
+    {
+        $adminkegiatan = User::where('role', 'adminkegiatan')->get();
+        return view('dashboard.adminkegiatan.index', compact('adminkegiatan'));
+    }
+    public function createadminkegiatan()
+    {
+        $kegiatans = Kegiatan::all();
+        return view('dashboard.adminkegiatan.create', compact('kegiatans'));
+    }
+    public function storeadminkegiatan()
+    {
+        User::create(request()->all());
+        return redirect('/dashboard/kegiatan/adminkegiatan')->with('message', 'Berhasil menambahkan data');
+    }
+    public function editadminkegiatan($id)
+    {
+        $adminkegiatan = User::where('id', $id)->first();
+        $kegiatans = Kegiatan::all();
+        $namakegiatan = $adminkegiatan->kegiatan->nama;
+        return view('dashboard.adminkegiatan.edit', compact('adminkegiatan', 'kegiatans', 'namakegiatan'));
+    }
+    public function updateadminkegiatan($id)
+    {
+        $adminkegiatan = User::where('id', $id)->first();
+        $adminkegiatan->update(request()->all());
+        return redirect('/dashboard/kegiatan/adminkegiatan')->with('message', 'Berhasil mengubah data');
+    }
+    public function showadminkegiatan($id)
+    {
+        $adminkegiatan = User::where('id', $id)->first();
+        return view('dashboard.adminkegiatan.show', compact('adminkegiatan'));
+    }
+    public function deleteadminkegiatan($id)
+    {
+        $adminkegiatan = User::find($id);
+        $adminkegiatan->delete();
+        return redirect('/dashboard/kegiatan/adminkegiatan');
     }
 
     //CRUD TAMBAH NILAI ASPEK

@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('cabanglatihan_id');
+            $table->foreignId('cabanglatihan_id')->nullable();
+            $table->foreignId('kegiatan_id')->nullable();
             $table->string('role')->default('admincabang');
             $table->boolean('status')->default(1);
             $table->rememberToken();

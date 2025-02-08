@@ -20,6 +20,7 @@
                     <span>Dashboard</span></a>
             </li>
 
+            @if(auth()->user()->role == 'admincabang' || auth()->user()->role == 'adminpimda')
             @if(auth()->user()->status == true)
             <!-- Nav Item - Charts -->
             <li class="nav-item">
@@ -63,6 +64,7 @@
                 </a>
             </li>
             @endcan
+            @endif
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
@@ -72,15 +74,15 @@
                 </a>
             </li>
 
-            @can('admincabang')
+            @if(auth()->user()->role == 'adminpimda')
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard/kegiatan/kegiatansiswa">
-                    <i class="bi bi-calendar-plus-fill"></i>
-                    <span>Kegiatan Siswa</span>
+                <a class="nav-link" href="/dashboard/kegiatan/adminkegiatan">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Admin Kegiatan</span>
                 </a>
             </li>
-            @endcan
+            @endif
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">

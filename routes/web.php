@@ -89,7 +89,7 @@ Route::prefix('dashboard/kegiatan')->middleware(['auth', 'adminaktif'])->group(f
 
     //ROUTE KEGIATAN ADMIN CABANG
     //ROUTE SIDEBAR KEGIATAN SISWA
-    Route::get('/kegiatansiswa', [dashboardController::class, 'kegiatansiswa']);
+    // Route::get('/kegiatansiswa', [dashboardController::class, 'kegiatansiswa']);
 
     //ROUTE DAFTARKAN KEGIATAN SISWA
     Route::get('/daftarkan/{id}', [dashboardController::class, 'daftarkan']);
@@ -101,6 +101,15 @@ Route::post('/dashboard/kegiatansiswa/store', [dashboardController::class, 'stor
 //ROUTE AKTIF & NONAKTIF KEGIATAN
 Route::get('/dashboard/kegiatan/aktif/{id}', [dashboardController::class, 'aktifkegiatan'])->middleware(['auth', 'adminaktif']);
 Route::get('/dashboard/kegiatan/nonaktif/{id}', [dashboardController::class, 'nonaktifkegiatan'])->middleware(['auth', 'adminaktif']);
+
+//ROUTE ADMIN KEGIATAN
+Route::get('/dashboard/kegiatan/adminkegiatan', [dashboardController::class, 'getadminkegiatan'])->middleware('auth');
+Route::get('/dashboard/kegiatan/adminkegiatan/create', [dashboardController::class, 'createadminkegiatan'])->middleware('auth');
+Route::post('/dashboard/kegiatan/adminkegiatan/store', [dashboardController::class, 'storeadminkegiatan'])->middleware('auth');
+Route::get('/dashboard/kegiatan/adminkegiatan/edit/{id}', [dashboardController::class, 'editadminkegiatan'])->middleware('auth');
+Route::post('/dashboard/kegiatan/adminkegiatan/update/{id}', [dashboardController::class, 'updateadminkegiatan'])->middleware('auth');
+Route::get('/dashboard/kegiatan/adminkegiatan/{id}', [dashboardController::class, 'showadminkegiatan'])->middleware('auth');
+Route::delete('/dashboard/kegiatan/adminkegiatan/delete/{id}', [dashboardController::class, 'deleteadminkegiatan'])->middleware('auth');
 
 //ROUTE EDIT HALAMAN PDF
 Route::get('/dashboard/tabel/{id}', [dashboardController::class, 'tabel'])->middleware(['auth', 'adminaktif']);

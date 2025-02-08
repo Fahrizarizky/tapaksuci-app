@@ -4,7 +4,9 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-dark text-uppercase fw-bold">Kegiatan Tapak Suci</h1>
+    @can('adminpimda')
     <a href="/dashboard/kegiatan/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="bi bi-plus-circle"></i> Kegiatan</a>
+    @endcan
 </div>
 
 @php
@@ -40,6 +42,45 @@ $notifications = auth()->user()->unreadNotifications;
         @endif
     </div>
 </div>
+
+@if(auth()->user()->role == 'adminkegiatan')
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <table class="table table-striped table-hover table-sm">
+            <tr>
+                <td><b>No.</b></td>
+                <td><b>Nama Kegiatan</b></td>
+                <td><b>Jenis Kegiatan</b></td>
+                <td><b>Jumlah Peserta</b></td>
+                <td><b>ketua Pelaksana</b></td>
+                <td><b>Status</b></td>
+                <td><b>Aksi</b></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>{{$adminkegiatan->nama}}</td>
+                <td>{{$adminkegiatan->jenis}}</td>
+                <td>{{$adminkegiatan->jumlah_peserta}}</td>
+                <td>{{$adminkegiatan->ketua_panitia}}</td>
+                <td>{{$adminkegiatan->status == true ? 'Aktif' : 'Nonaktif'}}
+                    <a href="/dashboard/kegiatan/aktif/{{ $adminkegiatan->id }}" class="btn btn-success btn-sm shadow-sm">
+                        <i class="bi bi-check-lg"></i>
+                    </a>
+                    <a href="/dashboard/kegiatan/nonaktif/{{ $adminkegiatan->id }}" class="btn btn-danger btn-sm shadow-sm">
+                        <i class="bi bi-x-lg"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="/dashboard/kegiatan/edit/{{ $adminkegiatan->id }}" class="btn btn-primary btn-sm shadow-sm"><i class="bi bi-pencil"></i></a>
+                    <a href="/dashboard/kegiatan/tambahaspek/{{ $adminkegiatan->id }}" class="btn btn-primary btn-sm shadow-sm"><i class="bi bi-plus-square-fill"></i></a>
+                    <a href="/dashboard/tabel/{{ $adminkegiatan->id }}" class="btn btn-info btn-sm shadow-sm"><i class="bi bi-file-earmark-text"></i></a>
+                    <a href="/dashboard/kegiatan/show/{{ $adminkegiatan->id }}" class="btn btn-info btn-sm shadow-sm"><i class="bi bi-eye"></i></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+@endif
 
 @can('adminpimda')
 <div class="card shadow mb-4">

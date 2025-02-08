@@ -1,6 +1,21 @@
 @extends('dashboard.layout.layoutpage')
 @section('content')
 
+@if(auth()->user()->role == 'adminkegiatan')
+<!-- Top Row: Welcome Message -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card shadow-lg border-0">
+      <div class="card-body text-center bg-primary text-white">
+        <h3 class="fw-bold">Selamat Datang, Admin Kegiatan</h3>
+        <p class="mb-0">Kelola data kegiatan dengan mudah dan efisien.</p>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
+
+@if(auth()->user()->role == 'adminpimda' || auth()->user()->role == 'admincabang')
 <div class="container-fluid py-4">
 
   <!-- Top Row: Welcome Message -->
@@ -86,7 +101,6 @@
   </div>
 
 </div>
-
-
+@endif
 
 @endsection
