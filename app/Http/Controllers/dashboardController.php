@@ -10,11 +10,16 @@ use App\Models\Jeniskategori;
 use App\Models\Jeniskegiatan;
 use App\Models\Jenistingkatan;
 use App\Models\Kategoricabanglatihan;
+use App\Models\Kategorikeuangan;
 use App\Models\Kategoriukt;
 use App\Models\Kegiatan;
 use App\Models\Kegiatansiswa;
+use App\Models\Pemasukan;
+use App\Models\Pengeluaran;
 use App\Models\Riwayatkaderisasi;
 use App\Models\Seluruhpeserta;
+use App\Models\Suratkeluar;
+use App\Models\Suratmasuk;
 use App\Models\Tingkatan;
 use App\Models\User;
 use App\Notifications\DataAddedNotification;
@@ -719,5 +724,151 @@ class dashboardController extends Controller
         $kegiatanfirst->update();
 
         return redirect('/dashboard/kegiatan/kegiatansiswa')->with('message', 'Berhasil mendaftarkan siswa');
+    }
+
+    //CRUD KATEGORI KEUANGAN
+    public function getkategorikeuangan() {
+        $kategorikeuangan = Kategorikeuangan::latest()->get();
+        return view('dashboard.keuangan.index',compact('kategorikeuangan'));
+    }
+    public function createkategorikeuangan() {
+        return view('dashboard.keuangan.create');
+    }
+    public function storekategorikeuangan() {
+        Kategorikeuangan::create(request()->all());
+        return redirect('/dashboard/kategorikeuangan')->with('message', 'Berhasil menambahkan data');
+    }
+    public function editkategorikeuangan($id) {
+        $kategorikeuangan = Kategorikeuangan::all();
+        $kategori = Kategorikeuangan::find($id);
+        return view('dashboard.keuangan.edit', compact('kategorikeuangan', 'kategori'));
+    }
+    public function updatekategorikeuangan($id){
+        $kategorikeuangan = Kategorikeuangan::find($id);
+        $kategorikeuangan->update(request()->all());
+        return redirect('/dashboard/kategorikeuangan')->with('message', 'Data berhasil diubah');
+    }
+    public function deletekategorikeuangan($id){
+        $kategorikeuangan = Kategorikeuangan::find($id);
+        $kategorikeuangan->delete();
+        return redirect('/dashboard/kategorikeuangan')->with('message', 'Data berhasil dihapus');
+    }
+
+    //CRUD PEMASUKAN
+    public function getpemasukan() {
+        $pemasukan = Pemasukan::latest()->get();
+        $tahunbuku = Pemasukan::first()->tahun_buku;
+        return view('dashboard.pemasukan.index',compact('pemasukan','tahunbuku'));
+    }
+    public function createpemasukan() {
+        $kategorikeuangan = Kategorikeuangan::all();
+        return view('dashboard.pemasukan.create', compact('kategorikeuangan'));
+    }
+    public function storepemasukan() {
+        Pemasukan::create(request()->all());
+        return redirect('/dashboard/pemasukan')->with('message', 'Berhasil menambahkan data');
+    }
+    public function editpemasukan($id) {
+        $pemasukan = Pemasukan::find($id);
+        $kategorikeuangan = Kategorikeuangan::all();
+        return view('dashboard.pemasukan.edit', compact('pemasukan','kategorikeuangan'));
+    }
+    public function updatepemasukan($id){
+        $pemasukan = Pemasukan::find($id);
+        $pemasukan->update(request()->all());
+        return redirect('/dashboard/pemasukan')->with('message','Data berhasil diubah');
+    }
+    public function showpemasukan($id) {
+        $pemasukan = Pemasukan::find($id);
+        return view('dashboard.pemasukan.show', compact('pemasukan'));
+    }
+
+    //CRUD PENGELUARAN
+    public function getpengeluaran() {
+        $pengeluaran = Pengeluaran::latest()->get();
+        $tahunbuku = Pengeluaran::first()->tahun_buku;     
+        return view('dashboard.pengeluaran.index', compact('pengeluaran','tahunbuku'));
+    }
+    public function createpengeluaran() {
+        return view('dashboard.pengeluaran.create');
+    }
+    public function storepengeluaran() {
+        Pengeluaran::create(request()->all());
+        return redirect('/dashboard/pengeluaran')->with('message','Berhasil menambahkan data');
+    }
+    public function editpengeluaran($id) {
+        $pengeluaran = Pengeluaran::find($id);
+        return view('dashboard.pengeluaran.edit', compact('pengeluaran'));
+    }
+    public function updatepengeluaran($id) {
+        $pengeluaran = Pengeluaran::find($id);
+        $pengeluaran->update(request()->all());
+        return redirect('/dashboard/pengeluaran')->with('message', 'Data berhasil diubah');
+    }
+    public function showpengeluaran($id) {
+        $pengeluaran = Pengeluaran::find($id);
+        return view('dashboard.pengeluaran.show', compact('pengeluaran'));
+    }
+
+    //CRUD SURAT MASUK
+    public function suratmasuk() {
+        $suratmasuk = Suratmasuk::latest()->get();
+        return view('dashboard.suratmasuk.index',compact('suratmasuk'));
+    }
+    public function createsuratmasuk() {
+        return view('dashboard.suratmasuk.create');
+    }
+    public function storesuratmasuk() {
+        Suratmasuk::create(request()->all());
+        return redirect('/dashboard/suratmasuk')->with('message', 'Berhasil menambahkan data');
+    }
+    public function editsuratmasuk($id) {
+        $suratmasuk = Suratmasuk::find($id);
+        return view('dashboard.suratmasuk.edit', compact('suratmasuk'));
+    }
+    public function updatesuratmasuk($id){
+        $suratmasuk = Suratmasuk::find($id);
+        $suratmasuk->update(request()->all());
+        return redirect('/dashboard/suratmasuk')->with('message', 'Data berhasil diubah');
+    }
+    public function showsuratmasuk($id){
+        $suratmasuk = Suratmasuk::find($id);
+        return view('dashboard.suratmasuk.show', compact('suratmasuk'));
+    }
+    public function deletesuratmasuk($id) {
+        $suratmasuk = Suratmasuk::find($id);
+        $suratmasuk->delete();
+        return redirect('/dashboard/suratmasuk')->with('message', 'Data berhasil Dihapus');
+    }
+
+    //CRUD SURAT KELUAR
+    public function suratkeluar() {
+        $suratkeluar = Suratkeluar::latest()->get();
+        return view('dashboard.suratkeluar.index', compact('suratkeluar'));
+    }
+    public function createsuratkeluar() {
+        return view('dashboard.suratkeluar.create');
+    }
+    public function storesuratkeluar() {
+        Suratkeluar::create(request()->all());
+        return redirect('/dashboard/suratkeluar')->with('message', 'Berhasil menambahkan data');
+    }
+    public function editsuratkeluar($id) {
+        $suratkeluar = Suratkeluar::find($id);
+        return view('dashboard.suratkeluar.edit', compact('suratkeluar'));
+    }
+    public function updatesuratkeluar($id) {
+        $suratkeluar = Suratkeluar::find($id);
+        $suratkeluar->update(request()->all());
+        return redirect('/dashboard/suratkeluar')->with('message','Data berhasil diubah');
+    }
+    public function showsuratkeluar($id) {
+        $suratkeluar = Suratkeluar::find($id);
+        return view('dashboard.suratkeluar.show', compact('suratkeluar'));
+    }
+    public function deletesuratkeluar($id) {
+        $suratkeluar = Suratkeluar::find($id);
+        $suratkeluar->delete();
+        return redirect('/dashboard/suratkeluar')->with('message', 'Data berhasil dihapus');
     }
 }

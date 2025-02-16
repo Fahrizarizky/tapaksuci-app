@@ -90,6 +90,21 @@
     <script src="{{asset('js/sb-admin-2.js')}}"></script>
 
     <script>
+        document.getElementById('kebutuhan_surat').addEventListener('change', function () {
+            const selectValue = this.value;
+            const input2 = document.getElementById('kode_surat');
+
+            if (selectValue === 'Organisasi') {
+                input2.value = 'A';
+            } else if (selectValue === 'Personalia') {
+                input2.value = 'B';
+            } else {
+                input2.value = 'C';
+            }
+        });
+    </script>
+
+    <script>
         //Jquery
         // Ketika tombol "Lihat Ijazah" diklik
         $('#imageModal').on('show.bs.modal', function(event) {

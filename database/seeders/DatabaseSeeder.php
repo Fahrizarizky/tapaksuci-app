@@ -10,9 +10,13 @@ use App\Models\Jeniskategori;
 use App\Models\Jeniskegiatan;
 use App\Models\Jenistingkatan;
 use App\Models\Kategoricabanglatihan;
+use App\Models\Kategorikeuangan;
 use App\Models\Kategoriukt;
 use App\Models\Kegiatansiswa;
+use App\Models\Pemasukan;
+use App\Models\Pengeluaran;
 use App\Models\Seluruhpeserta;
+use App\Models\Suratkeluar;
 use App\Models\Tingkatan;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -529,6 +533,91 @@ class DatabaseSeeder extends Seeder
         Aspeknilailkpts::create([
             'nama' => 'Karya Tulis / Nyata',
             'kegiatan_id' => 2
+        ]);
+
+        Kategorikeuangan::create([
+            'kode' => '001',
+            'nama' => 'Iuran dan Infaq Pendekar'
+        ]);
+        Kategorikeuangan::create([
+            'kode' => '002',
+            'nama' => 'Iuran dan Infaq Kader'
+        ]);
+        Kategorikeuangan::create([
+            'kode' => '003',
+            'nama' => 'Iuran dan Infaq Siswa'
+        ]);
+        Kategorikeuangan::create([
+            'kode' => '004',
+            'nama' => 'Sumbangan Wajib UKT'
+        ]);
+        Kategorikeuangan::create([
+            'kode' => '005',
+            'nama' => 'Pendaftaran Siswa '
+        ]);
+        Kategorikeuangan::create([
+            'kode' => '006',
+            'nama' => 'Bantuan PDM'
+        ]);
+        Kategorikeuangan::create([
+            'kode' => '007',
+            'nama' => 'Bantuan AUM'
+        ]);
+        Kategorikeuangan::create([
+            'kode' => '008',
+            'nama' => 'Sumbangan, Zakat dan Bantuan Tidak Mengikat'
+        ]);
+        Kategorikeuangan::create([
+            'kode' => '009',
+            'nama' => 'Sumbangan Unit Usaha Pimda'
+        ]);
+
+        Pemasukan::create([
+            'kode_transaksi' => '001',
+            'tahun_buku' => '2025',
+            'nama_transaksi' => 'Transaksi 1',
+            'kategori' => 'Iuran dan Infaq Pendekar',
+            'nominal' => '10.000',
+            'pengirim' => 'Pengirim 1',
+            'penerima' => 'Penerima 1',
+            'tanggal_pengiriman' => '2025/1/1',
+            'lokasi_pengiriman' => 'Lokasi 1',
+            'keterangan' => 'Tidak ada'
+        ]);
+        Pemasukan::create([
+            'kode_transaksi' => '002',
+            'tahun_buku' => '2025',
+            'nama_transaksi' => 'Transaksi 2',
+            'kategori' => 'Iuran dan Infaq Pendekar',
+            'nominal' => '20.000',
+            'pengirim' => 'Pengirim 2',
+            'penerima' => 'Penerima 2',
+            'tanggal_pengiriman' => '2025/2/2',
+            'lokasi_pengiriman' => 'Lokasi 2',
+            'keterangan' => 'Tidak ada'
+        ]);
+
+        Pengeluaran::create([
+            'kode_transaksi' => '001',
+            'tahun_buku' => '2025',
+            'nama_transaksi' => 'Transaksi 1',
+            'nominal' => '10.000',
+            'peminta' => 'Peminta 1',
+            'pemberi' => 'Pemberi 1',
+            'tanggal_penyerahan' => '2025/1/1',
+            'lokasi_penyerahan' => 'Lokasi 1',
+            'keterangan' => 'Tidak ada',
+        ]);
+        Pengeluaran::create([
+            'kode_transaksi' => '002',
+            'tahun_buku' => '2025',
+            'nama_transaksi' => 'Transaksi 2',
+            'nominal' => '20.000',
+            'peminta' => 'Peminta 2',
+            'pemberi' => 'Pemberi 2',
+            'tanggal_penyerahan' => '2025/2/2',
+            'lokasi_penyerahan' => 'Lokasi 2',
+            'keterangan' => 'Tidak ada',
         ]);
     }
 }

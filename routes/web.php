@@ -111,6 +111,48 @@ Route::post('/dashboard/kegiatan/adminkegiatan/update/{id}', [dashboardControlle
 Route::get('/dashboard/kegiatan/adminkegiatan/{id}', [dashboardController::class, 'showadminkegiatan'])->middleware('auth');
 Route::delete('/dashboard/kegiatan/adminkegiatan/delete/{id}', [dashboardController::class, 'deleteadminkegiatan'])->middleware('auth');
 
+//ROUTE KATEGORI KEUANGAN
+Route::get('/dashboard/kategorikeuangan', [dashboardController::class, 'getkategorikeuangan'])->middleware('auth');
+Route::get('/dashboard/kategorikeuangan/create', [dashboardController::class, 'createkategorikeuangan'])->middleware('auth');;
+Route::post('/dashboard/kategorikeuangan/store', [dashboardController::class, 'storekategorikeuangan'])->middleware('auth');;
+Route::get('/dashboard/kategorikeuangan/edit/{id}', [dashboardController::class, 'editkategorikeuangan'])->middleware('auth');;
+Route::post('/dashboard/kategorikeuangan/update/{id}', [dashboardController::class, 'updatekategorikeuangan'])->middleware('auth');;
+Route::delete('/dashboard/kategorikeuangan/delete/{id}', [dashboardController::class, 'deletekategorikeuangan'])->middleware('auth');;
+
+//ROUTE PEMASUKKAN
+Route::get('/dashboard/pemasukan', [dashboardController::class, 'getpemasukan'])->middleware('auth');
+Route::get('/dashboard/pemasukan/create', [dashboardController::class, 'createpemasukan'])->middleware('auth');
+Route::post('/dashboard/pemasukan/store', [dashboardController::class, 'storepemasukan'])->middleware('auth');
+Route::get('/dashboard/pemasukan/edit/{id}', [dashboardController::class, 'editpemasukan'])->middleware('auth');
+Route::post('/dashboard/pemasukan/update/{id}', [dashboardController::class, 'updatepemasukan'])->middleware('auth');
+Route::get('/dashboard/pemasukan/{id}', [dashboardController::class, 'showpemasukan'])->middleware('auth');
+
+//ROUTE PENGELUARAN
+Route::get('/dashboard/pengeluaran', [dashboardController::class, 'getpengeluaran'])->middleware('auth');
+Route::get('/dashboard/pengeluaran/create', [dashboardController::class, 'createpengeluaran'])->middleware('auth');
+Route::post('/dashboard/pengeluaran/store', [dashboardController::class, 'storepengeluaran'])->middleware('auth');
+Route::get('/dashboard/pengeluaran/edit/{id}', [dashboardController::class, 'editpengeluaran'])->middleware('auth');
+Route::post('/dashboard/pengeluaran/update/{id}', [dashboardController::class, 'updatepengeluaran'])->middleware('auth');
+Route::get('/dashboard/pengeluaran/{id}', [dashboardController::class, 'showpengeluaran'])->middleware('auth');
+
+//ROUTE SURAT MASUK
+Route::get('/dashboard/suratmasuk', [dashboardController::class, 'suratmasuk'])->middleware('auth');
+Route::get('/dashboard/suratmasuk/create', [dashboardController::class, 'createsuratmasuk'])->middleware('auth');
+Route::post('/dashboard/suratmasuk/store', [dashboardController::class, 'storesuratmasuk'])->middleware('auth');
+Route::get('/dashboard/suratmasuk/edit/{id}', [dashboardController::class, 'editsuratmasuk'])->middleware('auth');
+Route::post('/dashboard/suratmasuk/update/{id}', [dashboardController::class, 'updatesuratmasuk'])->middleware('auth');
+Route::get('/dashboard/suratmasuk/{id}', [dashboardController::class, 'showsuratmasuk'])->middleware('auth');
+Route::delete('/dashboard/suratmasuk/delete/{id}', [dashboardController::class, 'deletesuratmasuk'])->middleware('auth');
+
+//ROUTE SURAT KELUAR
+Route::get('/dashboard/suratkeluar', [dashboardController::class, 'suratkeluar'])->middleware('auth');
+Route::get('/dashboard/suratkeluar/create', [dashboardController::class, 'createsuratkeluar'])->middleware('auth');
+Route::post('/dashboard/suratkeluar/store', [dashboardController::class, 'storesuratkeluar'])->middleware('auth');
+Route::get('/dashboard/suratkeluar/edit/{id}', [dashboardController::class, 'editsuratkeluar'])->middleware('auth');
+Route::post('/dashboard/suratkeluar/update/{id}', [dashboardController::class, 'updatesuratkeluar'])->middleware('auth');
+Route::get('/dashboard/suratkeluar/{id}', [dashboardController::class, 'showsuratkeluar'])->middleware('auth');
+Route::delete('/dashboard/suratkeluar/delete/{id}', [dashboardController::class, 'deletesuratkeluar'])->middleware('auth');
+
 //ROUTE EDIT HALAMAN PDF
 Route::get('/dashboard/tabel/{id}', [dashboardController::class, 'tabel'])->middleware(['auth', 'adminaktif']);
 
