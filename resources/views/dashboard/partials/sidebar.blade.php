@@ -100,7 +100,7 @@
 
            <!-- Nav Item - Kategori Keuangan -->
            <!-- Nav Item - Kategori Keuangan (Toggle Button) -->
-           @if(auth()->user()->role == 'admincabang' || auth()->user()->role == 'adminpimda')
+           @if(auth()->user()->role == 'adminpimda')
            <li class="nav-item">
             <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#keuanganMenu" aria-expanded="false" aria-controls="keuanganMenu">
                 <i class="bi bi-gear-fill"></i>
