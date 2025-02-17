@@ -56,14 +56,6 @@
                     <input type="text" class="form-control" id="no_telp" name="no_telp" required>
                 </div>
                 <div class="form-group">
-                    <label for="nama_cabang" class="font-weight-bold">Nama Cabang Latihan</label>
-                    <select type="text" class="form-control" id="kategori" name="nama_cabang" required>
-                        @foreach($namacabang as $cabang)
-                        <option value="{{ $cabang->id }}">{{$cabang->nama_cabang}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
                     <label for="tingkatan" class="font-weight-bold">Tingkatan Saat Ini</label>
                     <select type="text" class="form-control" id="tingkatan" name="tingkatan" required>
                         @foreach($tingkatan as $item)

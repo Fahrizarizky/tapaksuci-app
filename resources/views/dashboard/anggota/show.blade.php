@@ -92,7 +92,7 @@
             <strong>Nama Cabang Latihan:</strong>
           </div>
           <div class="col-md-8 text-muted">
-            {{$anggota->cabanglatihan->nama_cabang}}
+            {{$anggota->cabanglatihan->nama_cabang ?? 'Tidak ada cabang'}}
           </div>
         </div>
         <div class="row mb-3">
@@ -158,7 +158,7 @@
               <!-- Inputan 6: Email Aktif -->
               <div class="form-group">
                 <label for="email">Email Aktif</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ $anggota->email }}" required>
+                <input type="email" class="form-control" id="email" name="email" value="{{ $anggota->email }}">
               </div>
               <!-- Inputan 7: No Telepon -->
               <div class="form-group">
@@ -166,14 +166,6 @@
                 <input class="form-control" id="no_telp" name="no_telp" value="{{ $anggota->no_telp }}" required>
               </div>
               <!-- Inputan 8: Cabang Latihan -->
-              <div class="form-group">
-                <label for="nama_cabang" class="font-weight-bold">Nama Cabang Latihan</label>
-                <select type="text" class="form-control" id="kategori" name="nama_cabang" required>
-                  @foreach($namacabang as $cabang)
-                  <option value="{{ $cabang->id }}">{{$cabang->nama_cabang}}</option>
-                  @endforeach
-                </select>
-              </div>
               <!-- Inputan 9: Tingakatan Saat Ini -->
               <div class="form-group">
                 <label for="tingakatan">Tingkatan Saat Ini</label>
