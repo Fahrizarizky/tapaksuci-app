@@ -52,7 +52,7 @@
         <td>{{$cabang->kategori}}</td>
         <td>{{$cabang->nama_cabang}}</td>
         <td>{{$cabang->alamat}}</td>
-        <td>{{$cabang->pelatih->nama}}</td>
+        <td>{{$cabang->pelatih->nama ?? 'Tidak ada pelatih'}}</td>
         <td>
           <a href="/dashboard/cabang-latihan/edit/{{ $cabang->id }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>
           <a href="/dashboard/cabang-latihan/{{ $cabang->id }}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
