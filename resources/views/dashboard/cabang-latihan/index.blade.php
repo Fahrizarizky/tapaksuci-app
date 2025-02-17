@@ -4,7 +4,9 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
   <h1 class="h3 mb-0 text-dark text-uppercase fw-bold">Cabang Latihan</h1>
+  @if(auth()->user()->role === 'adminpimda')
   <a href="/dashboard/cabang-latihan/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="bi bi-plus-circle"></i> Cabang Latihan</a>
+  @endif
 </div>
 
 <div class="row justify-content-center">
@@ -29,7 +31,7 @@
         <td><b>Pelatih</b></td>
         <td><b>Aksi</b></td>
       </tr>
-
+      
       @can('admincabang')
       @foreach($cabanglatihanadmin as $cabang)
       <tr>

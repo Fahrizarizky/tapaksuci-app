@@ -75,9 +75,13 @@ class dashboardController extends Controller
 
     // DASHBOARD
     public function index()
-    {
+    {   
+        $anggotacabanglatihan = [];
+
+        //untuk mengecek apakah admin cabang yang sedang login memiliki relasi ke cabang yang ada
         if (Auth::user()->role == 'adminpimda' || Auth::user()->role == 'admincabang') {
 
+            if(!empty(Auth::user()->cabanglatihan->nama_cabang)) {
             // Untuk menentukan cabang latihan berdasarkan admin cabang yang sedang login
             $authcabang = Cabanglatihan::where('nama_cabang', Auth::user()->cabanglatihan->nama_cabang)->first();
             $newauthcabang = $authcabang->id;
@@ -86,6 +90,14 @@ class dashboardController extends Controller
             $anggotapimdasiswa = Anggotapimda::where('cabanglatihan_id', $newauthcabang)->get();
 
             $anggotacabanglatihan = $anggotapimdasiswa;
+            
+            $anggotapimda = Anggotapimda::all();
+            $cabanglatihan = Cabanglatihan::all();
+            $tingkatan = Tingkatan::all();
+            return view('dashboard.index', compact('anggotapimda', 'cabanglatihan', 'tingkatan', 'anggotacabanglatihan'));
+            }
+            $anggotacabanglatihan = []; 
+            
             $anggotapimda = Anggotapimda::all();
             $cabanglatihan = Cabanglatihan::all();
             $tingkatan = Tingkatan::all();
@@ -97,13 +109,18 @@ class dashboardController extends Controller
     // CRUD CABANG LATIHAN
     public function getcabanglatihan()
     {
+        $cabanglatihanadmin = [];
         $cabanglatihan = Cabanglatihan::latest()->get();
 
+        if(!empty(Auth::user()->cabanglatihan->nama_cabang)) {
         // Menampilkan cabang latihan berdasarkan admin cabang yang sedang login
         $cabanglatihanadmin = Cabanglatihan::where('nama_cabang', Auth::user()->cabanglatihan->nama_cabang)->get();
 
         return view('dashboard.cabang-latihan.index', compact('cabanglatihan', 'cabanglatihanadmin'));
+    };
+    return view('dashboard.cabang-latihan.index', compact('cabanglatihan', 'cabanglatihanadmin'));
     }
+
     public function createcabanglatihan()
     {
         $jeniskategori = Kategoricabanglatihan::all();
@@ -207,30 +224,34 @@ class dashboardController extends Controller
     // CRUD ANGGOTA PIMDA
     public function getanggota()
     {
+        $anggotapimdasiswa = [];
+        //untuk mendapatkan semua anggota pimda 
+        $anggotapimda = Anggotapimda::OrderByRaw("CASE
+                                                WHEN tingkatan = 'Pendekar Besar' THEN 1
+                                                WHEN tingkatan = 'Pendekar Utama' THEN 2
+                                                WHEN tingkatan = 'Pendekar Kepala' THEN 3
+                                                WHEN tingkatan = 'Pendekar Madya' THEN 4
+                                                WHEN tingkatan = 'Pendekar Muda' THEN 5
+                                                WHEN tingkatan = 'Kader Utama' THEN 6
+                                                WHEN tingkatan = 'Kader Kepala' THEN 7
+                                                WHEN tingkatan = 'Kader Madya' THEN 8
+                                                WHEN tingkatan = 'Kader Muda' THEN 9
+                                                WHEN tingkatan = 'Kader Dasar' THEN 10
+                                                WHEN tingkatan = 'Siswa 4' THEN 11
+                                                WHEN tingkatan = 'Siswa 3' THEN 12
+                                                WHEN tingkatan = 'Siswa 2' THEN 13
+                                                WHEN tingkatan = 'Siswa 1' THEN 14
+                                                WHEN tingkatan = 'Siswa Dasar' THEN 15
+                                                ELSE 16
+                                                END
+                                                ")->get();
+
         // Untuk menentukan cabang latihan berdasarkan admin cabang yang sedang login
+        if(!empty(Auth::user()->cabanglatihan->nama_cabang)) {
         $authcabang = Cabanglatihan::where('nama_cabang', Auth::user()->cabanglatihan->nama_cabang)->first();
         $newauthcabang = $authcabang->id;
 
         // Untuk mendapatkan data anggota yang memiliki tingkat "Siswa" dan cabang latihan sesuai dengan admin cabang
-        $anggotapimda = Anggotapimda::OrderByRaw("CASE
-                                                    WHEN tingkatan = 'Pendekar Besar' THEN 1
-                                                    WHEN tingkatan = 'Pendekar Utama' THEN 2
-                                                    WHEN tingkatan = 'Pendekar Kepala' THEN 3
-                                                    WHEN tingkatan = 'Pendekar Madya' THEN 4
-                                                    WHEN tingkatan = 'Pendekar Muda' THEN 5
-                                                    WHEN tingkatan = 'Kader Utama' THEN 6
-                                                    WHEN tingkatan = 'Kader Kepala' THEN 7
-                                                    WHEN tingkatan = 'Kader Madya' THEN 8
-                                                    WHEN tingkatan = 'Kader Muda' THEN 9
-                                                    WHEN tingkatan = 'Kader Dasar' THEN 10
-                                                    WHEN tingkatan = 'Siswa 4' THEN 11
-                                                    WHEN tingkatan = 'Siswa 3' THEN 12
-                                                    WHEN tingkatan = 'Siswa 2' THEN 13
-                                                    WHEN tingkatan = 'Siswa 1' THEN 14
-                                                    WHEN tingkatan = 'Siswa Dasar' THEN 15
-                                                    ELSE 16
-                                                    END
-                                                    ")->get();
         $anggotapimdasiswa = Anggotapimda::where('tingkatan', 'like', 'Siswa%')
             ->where('cabanglatihan_id', $newauthcabang)->OrderByRaw("CASE
                                                     WHEN tingkatan = 'Pendekar Besar' THEN 1
@@ -253,6 +274,9 @@ class dashboardController extends Controller
                                                     ")->latest()->get();
 
         return view('dashboard.anggota.index', compact('anggotapimda', 'anggotapimdasiswa'));
+        };
+        return view('dashboard.anggota.index', compact('anggotapimda', 'anggotapimdasiswa'));
+
     }
     public function createanggota()
     {

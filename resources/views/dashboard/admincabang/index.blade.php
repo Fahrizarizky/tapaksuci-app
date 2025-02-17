@@ -33,7 +33,7 @@
       <tr>
         <td>{{$admin->username}}</td>
         <td>{{$admin->email}}</td>
-        <td>{{$admin->cabanglatihan->nama_cabang}}</td>
+        <td>{{$admin->cabanglatihan->nama_cabang ?? 'Tidak ada cabang'}}</td>
         <td>{{$admin->role}}</td>
         <td>{{$admin->status == true ? 'Aktif' : 'Nonaktif'}}
           <a href="/dashboard/admincabang/aktif/{{ $admin->id }}" class="btn btn-success btn-sm shadow-sm">
