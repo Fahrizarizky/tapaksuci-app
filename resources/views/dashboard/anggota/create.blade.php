@@ -62,6 +62,10 @@
                         <option>{{$item->tingkatan}}</option>
                         @endforeach
                     </select>
+                    {{-- karena tidak ada input id cabang makanya tidak muncul setelah anggota di tambah --}}
+                    @if(auth()->user()->role == 'admincabang')
+                    <input type="hidden" value="{{auth()->user()->cabanglatihan->id}}" name="nama_cabang">
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="tahun_masuk" class="font-weight-bold">Tahun Masuk Tapak Suci</label>
