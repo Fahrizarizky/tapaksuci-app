@@ -251,9 +251,8 @@ class dashboardController extends Controller
         $authcabang = Cabanglatihan::where('nama_cabang', Auth::user()->cabanglatihan->nama_cabang)->first();
         $newauthcabang = $authcabang->id;
 
-        // Untuk mendapatkan data anggota yang memiliki tingkat "Siswa" dan cabang latihan sesuai dengan admin cabang
-        $anggotapimdasiswa = Anggotapimda::where('tingkatan', 'like', 'Siswa%')
-            ->where('cabanglatihan_id', $newauthcabang)->OrderByRaw("CASE
+        // Untuk mendapatkan data anggota yang memiliki cabang latihan sesuai dengan admin cabang
+        $anggotapimdasiswa = Anggotapimda::where('cabanglatihan_id', $newauthcabang)->OrderByRaw("CASE
                                                     WHEN tingkatan = 'Pendekar Besar' THEN 1
                                                     WHEN tingkatan = 'Pendekar Utama' THEN 2
                                                     WHEN tingkatan = 'Pendekar Kepala' THEN 3
